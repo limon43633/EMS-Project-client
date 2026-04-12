@@ -22,7 +22,7 @@
             active:scale-[0.98];
     }
     .btn-secondary {
-        @apply bg-white text-slate-700 border border-slate-200 px-5 py-2.5 rounded-md text-sm
+        @apply bg-white text-slate-700 border border-slate-300 px-5 py-2.5 rounded-md text-sm
             hover:bg-slate-50 hover:border-slate-300 transition-all duration-200;
     }
 
