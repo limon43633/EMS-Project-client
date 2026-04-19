@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import { dummyEmployeeData, DEPARTMENTS } from "../assets/assets";
 import { Plus, Search, X } from "lucide-react";
 import EmployeeCard from "../components/EmployeeCard";
+import EmployeeForm from "../components/EmployeeForm";
 
 
 const Employees = () => {
@@ -90,7 +91,11 @@ const Employees = () => {
                             </button>
                         </div>
                         <div className="p-6">
-                            from
+                             <EmployeeForm
+                              onSuccess={()=> {
+                                setShowCreateModal(false);
+                                fetchEmployees();
+                            }} onCancel={()=> setShowCreateModal(false)} />
                         </div>
                     </div>
 
@@ -116,7 +121,10 @@ const Employees = () => {
                             </button>
                         </div>
                         <div className="p-6">
-                            from
+                            <EmployeeForm initialData={editEmployee} onSuccess={()=> {
+                                setEditEmployee(null);
+                                fetchEmployees();
+                            }} onCancel={()=> setEditEmployee(null)} />
                         </div>
 
                     </div>
