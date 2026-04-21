@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import { dummyAttendanceData } from "../assets/assets";
 import Loading from "../components/Loading";
 import CheckInButton from "../components/attendance/CheckInButton";
+import AttendanceStats from "../components/attendance/AttendanceStats";
 
 
 const Attendance = () => {
@@ -33,6 +34,7 @@ const Attendance = () => {
                 <h1 className="page-title">Attendance</h1>
                 <p className="page-subtitle">Track your work hours and daily check-ins</p>
             </div>
+            
 
             {isDeleted ? (
                 <div className="mb-8 p-6 bg-rose-50 border border-rose-200 rounded-2xl text-center">
@@ -43,6 +45,8 @@ const Attendance = () => {
                     <CheckInButton todayRecord={todayRecord} onAction={fetchData} />
                 </div>
             )}
+
+            <AttendanceStats history={history} />
             
         </div>
     );
