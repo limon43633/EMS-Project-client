@@ -2,6 +2,8 @@ import { useCallback, useEffect, useState } from "react";
 import { dummyLeaveData } from "../assets/assets";
 import Loading from "../components/Loading";
 import {PalmtreeIcon, PlusIcon, ThermometerIcon, UmbrellaIcon} from "lucide-react";
+import LeaveHistory from "../components/leave/LeaveHistory";
+import ApplyLeaveModal from "../components/leave/ApplyLeaveModal";
 
 
 const Leave = () => {
@@ -41,8 +43,8 @@ const Leave = () => {
         <div className="animate-fade-in">
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
                 <div>
-                    <h1>Leave Management</h1>
-                    <p>{isAdmin ? "Manage leave applications" : "Your leave history and requests"}</p>
+                    <h1 className="page-title">Leave Management</h1>
+                    <p className="page-subtitle">{isAdmin ? "Manage leave applications" : "Your leave history and requests"}</p>
                 </div>
                 {!isAdmin && !isDeleted && (
                     <button onClick={()=> setShowModal(true)} className="btn-primary flex items-center gap-2 w-full sm:w-auto justify-center">
@@ -59,13 +61,16 @@ const Leave = () => {
                             <s.icon className="w-5 h-5 text-slate-600 group-hover:text-indigo-600 transition-colors duration-200" />
                         </div>
                         <div className="">
-                            <p>{s.label}</p>
-                            <p>{s.value}</p>
+                            <p className="text-sm text-slate-500">{s.label}</p>
+                            <p className="text-2xl font-bold text-slate-900 tracking-tight">{s.value} <span className="text-sm font-normal text-slate-400">taken</span> </p>
                         </div>
                         </div>
                     ))}
                 </div>
             )}
+
+            <LeaveHistory leaves={leaves} isAdmin={isAdmin} onUpdate={fetchLeaves} />
+            <ApplyLeaveModal open={showModal} onClose={()=> setShowModal(false)} onSuccess={fetchLeaves} />
 
         </div>
     );
