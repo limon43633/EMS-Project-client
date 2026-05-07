@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import { dummyEmployeeData, dummyPayslipData } from "../assets/assets";
 import Loading from "../components/Loading";
 import PaySlipList from "../components/payslip/PaySlipList";
+import GeneratePaySlipForm from "../components/payslip/GeneratePaySlipForm";
 
 
 const Payslips = () => {
@@ -37,7 +38,7 @@ const Payslips = () => {
                     <h1 className="page-title">Payslips</h1>
                     <p className="page-subtitle">{isAdmin ? "Generate and manage employee payslips" : "Your payslip history"}</p>
                 </div>
-                {isAdmin && <p>GENERATE FORM</p>}
+                {isAdmin && <GeneratePaySlipForm employees={employees} onSuccess={fetchPayslips} />}
               </div>
               <PaySlipList payslips={payslips} isAdmin={isAdmin} />
         </div>
